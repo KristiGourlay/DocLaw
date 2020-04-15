@@ -1,0 +1,24 @@
+body {
+ background-image: url("../images/law.png");
+ background-repeat: no-repeat;
+ background-size: 1900px 700px;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+#textboxid {
+  height:30px;
+  width:500px;
+  font-size: 14pt;
+  color: black;
+}
+
+#dateboxid {
+  height:30px;
+  width:70px;
+  font-size: 14pt;
+  color: black;
+}
