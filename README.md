@@ -1,4 +1,4 @@
-# doc_law
+# DocLaw
 
 <img src='static/images/legalbooks.png' width='1200' height='600' alt='legalbooks'>
 
