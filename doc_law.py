@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import regex as re
 import pickle
+import flask
+from flask import render_template, request
+import json
 
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
@@ -21,33 +24,42 @@ from gensim.models import doc2vec, Doc2Vec
 from models.language_cleaner import Datacleaner
 
 #Load data
-data = pd.read_csv('data/law_df.csv', index_col=0)
+data = pd.read_csv('data/final_legal_df.csv', index_col=0)
 
 #Load models
-lda_model = pickle.load(open('models/lda_model', 'rb'))
-d2v_model = Doc2Vec.load('models/d2v_model')
-cvec = pickle.load(open('models/cvec', 'rb'))
+lda_model = pickle.load(open('models/lda_final_model', 'rb'))
+d2v_model = Doc2Vec.load('models/d2v_final_model')
+cvec = pickle.load(open('models/final_cvec_model', 'rb'))
 
 
 
 class Law_Docs():
 
+
     def __init__(self, query):
-        self.query = query
+        dc = Datacleaner()
+        self.query = dc.clean(query)
 
     def show_results(self, predictions):
+
+        result = []
         n = 0
         for item in predictions:
             n += 1
             # print(data.summs[i])
-            print(f"Most Similar Case # {n}: Case #{item} Keywords: {data.keywords[item]} Case Summary: {data.summs[item]}")
+            result.append(f"Most Similar Case # {n}: Case: {data.case_citation_name[item]}")
+            result.append(f"Case Summary: {data.summs[item]}")
+
+
+        return result
+
 
     def ldamodel(self):
 
         '''
         returns prediction of which topic label input belongs to
         '''
-        
+
         count_query = cvec.transform([self.query])
         topic_likelihood = lda_model.transform(count_query)[0]
         topic = sorted(enumerate(topic_likelihood, 1), key=lambda x: x[1], reverse=True)[0][0]
@@ -80,7 +92,7 @@ class Law_Docs():
         sim_docs_same_topic = [num for num in sim_docs if data['lda_preds'][num] == topic]
 
         return self.show_results(sim_docs_same_topic)
-
+        # return sim_docs_same_topic
 
     def apply_filters(self, date=1841, court='no_court'):
 
@@ -95,9 +107,9 @@ class Law_Docs():
         return_docs = [num for num in sim_docs if data['lda_preds'][num] == topic]
 
         if date != 1841 and court != 'no_court':
-            return self.show_results([num for num in return_docs if data['decision_year'][num] >= date and data['court_name'][num] == court])
+            return self.show_results([num for num in return_docs if data['decision_date'][num] >= date and data['court_name'][num] == court])
         elif date > 1841 and court == 'no_court':
-            return self.show_results([num for num in return_docs if data['decision_year'][num] >= date])
+            return self.show_results([num for num in return_docs if data['decision_date'][num] >= date])
         elif date == 1841 and court != 'no_court':
             return self.show_results([num for num in return_docs if data['court_name'][num] == court])
         else:
@@ -105,8 +117,49 @@ class Law_Docs():
 
 
 
+# user_query = Law_Docs('tax realestate mortgage')
+# user_query.ldamodel()
+# user_query.d2v_preds()
+# user_query.super_version()
+# user_query.apply_filters(date=1960)
 
 
-user_query = Law_Docs('racial discrimination mortgage employment')
-user_query.super_version()
-user_query.apply_filters(date=1960)
+
+app = flask.Flask(__name__)
+
+@app.route('/home')
+def home():
+   with open("templates/home.html", 'r') as home:
+       return home.read()
+
+
+@app.route('/results', methods=['POST', 'GET'])
+def results():
+    if flask.request.method == 'POST':
+
+        inputs = flask.request.form
+
+        query = inputs['text']
+        date = int(inputs['date'])
+
+
+        ct = Datacleaner()
+        clean_query = ct.clean(query)
+        user_query = Law_Docs(clean_query)
+
+        prediction = user_query.apply_filters(date=date)[:10]
+
+
+        return render_template('results.html', results=prediction)
+
+
+
+if __name__ == '__main__':
+    '''Connects to the server'''
+
+
+    HOST = '127.0.0.1'
+    PORT = 5000
+    debug = True
+
+    app.run(HOST, PORT)
