@@ -1,6 +1,6 @@
 # law_docs
 
-<img src='static/images/legalbooks.png' width='500' height='300' alt='legalbooks'>
+<img src='static/images/legalbooks.png' width='1000' height='500' alt='legalbooks'>
 
 # The Data 
 
@@ -40,45 +40,44 @@ Next, using LDA, I was able to cluster the documents into 5 different groups bas
 I then used LDA on these 5 separate groups to then find subtopics within them. The following sub-topics were shown:
 
 Topic 1: Family Law
-<img src='static/images/lda_subtopic1.png' alt='lda1'>
-
 * Sub-Topic 1: complaint, department, school, district, employee, administrative, statute
 * Sub-Topic 2: petition, child, marriage, property, support
 * Sub-Topic 3: child, parent, custody, mental, care, minor
 * Sub-Topic 4: sentence, conviction, guilty, plea, probation, record
+<img src='static/images/lda_subtopic1.png' alt='lda1'>
 
 
 Topic 2: Labor Law?
-<img src='static/images/lda_subtopic2.png' alt='lda2'>
-
 * Sub-Topic 5: complaint, damage, claim, agreement
 * Sub-Topic 6: insurance, insurer, company, coverage, liability, claim
 * Sub-Topic 7: city, ordinance, commission, building, lease, zoning
+<img src='static/images/lda_subtopic2.png' alt='lda2'>
+
 
 
 Topic 3: Corporate and Commercial Law
-<img src='static/images/lda_subtopic3.png' alt='lda3'>
-
 * Sub-Topic 8: estate, deed, property, trust, mortgage, land
 * Sub-Topic 9: company, bank, stock, corporation, contact, business
 * Sub-Topic 10: error, filed, bill, record, petition
 * Sub-Topic 11: tax, contract, property, count, land, board, assessment
+<img src='static/images/lda_subtopic3.png' alt='lda3'>
+
 
 
 Topic 4: Criminal Cases (Felonies)
-<img src='static/images/lda_subtopic4.png' alt='lda4'>
-
 * Sub-Topic 12: testimony, testified, witness, police, jury, victim
 * Sub-Topic 13: jury, sentence, guilty, murder, criminal, record
 * Sub-Topic 14: officer, police, car, search, arrest, found, vehicle, warrant, possession
+<img src='static/images/lda_subtopic4.png' alt='lda4'>
+
 
 
 Topic 5: Civil Cases (contracts and torts)
-<img src='static/images/lda_subtopic5.png' alt='lda5'>
-
 * Sub-Topic 15: car, negligence, injury, accident
 * Sub-Topic 16: claimant, injury, doctor, accident, employee, work, industrial, medical, compensation, hospital, claim
 * Sub-Topic 17: street, city, property, company, damage, building, company, owner, foot, road, land
+<img src='static/images/lda_subtopic5.png' alt='lda5'>
+
 
 # MVP 
 
