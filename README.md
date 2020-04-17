@@ -1,6 +1,6 @@
 # DocLaw
 
-<img src='static/images/legalbooks.png' width='1200' height='600' alt='legalbooks'>
+<img src='static/images/legalbooks.png' width='1200' height='500' alt='legalbooks'>
 
 # The Data 
 
