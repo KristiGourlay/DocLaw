@@ -86,3 +86,20 @@ It can also limit those similar cases to those which fall under the same LDA top
 
 The next model (work in progress) will include the sub-topics found in the LDA modeling, as well as, the graph theory based on citations.
 
+
+# Tech Stack:
+
+* pandas
+* numpy
+* sklearn
+* requests
+* beautiful soup
+* regex
+* nltk
+* spacy
+* gensim
+* networkx
+* pickle
+* flask
+* HTML
+* CSS
