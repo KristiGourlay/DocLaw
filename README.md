@@ -4,7 +4,7 @@
 
 # The Data 
 
-This repository explores legal cases made available by The Caselaw Access Project ('CAP'). CAP expands public access the legal cases in the United States; digitized from the Harvard Law Library collections. The collection includes all official book-published case law. For the purpose of this repository, I decided to focus on Illinois, to create a model that could then be used on other states. 
+This repository explores legal cases made available by The Caselaw Access Project ('CAP'). CAP expands public access to legal cases in the United States; digitized from the Harvard Law Library collections. The collection includes all official book-published case law. For the purpose of this repository, I decided to focus on Illinois, to create a model that could then be used on other states. 
 
 
 # Legal Citations and Graph Theory 
