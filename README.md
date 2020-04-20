@@ -1,6 +1,7 @@
 # DocLaw
 
-<img src='static/images/legalbooks.png' width='1200' height='600' alt='legalbooks'>
+<img src='static/images/legalbooks.png' width='1200' height='500' alt='legalbooks'>
+
 
 # The Data 
 
@@ -10,6 +11,8 @@ This repository explores legal cases made available by The Caselaw Access Projec
 # Legal Citations and Graph Theory 
 
 I was able to use regex to extract citation information. The cases that each case relied upon were placed in a column: 'citations'. These would then be used for graph theory in the notebook 'citation_graphs', to create a directed graph, linking legal cases. *Still in progress*
+
+<img src='static/images/ldass16.png' alt='ldass16'>
 
 
 # Corpus Specific Words (Legalese)
@@ -30,14 +33,14 @@ I then used Doc2Vec on the cleaned corpus and was able to find vectors for each 
 
 # LDA Topic Modeling
 
-Next, using LDA, I was able to cluster the documents into 5 different groups based on latent topics. 
+Using LDA, I was able to cluster the documents into 5 different groups (Grid Search suggested 5) based on latent topics. Looking at the 5 groups; different types of law did not seem obvious. Increasing the number of clusters did not improve the model, as it resulted in clusters that were not well-seperated, and did not result in improved clarity of topics.   
 
 <img src='static/images/lda_topics.png' alt='lda'>
 
 
 
 
-I then used LDA on these 5 separate groups to then find subtopics within them. The following sub-topics were shown:
+However, I then used LDA on these 5 separate groups to then find subtopics within them. This resulted in a greater clarity about the initial hidden topics of the 5 clusters. The following sub-topics were shown:
 
 Topic 1: Family Law
 * Sub-Topic 1: complaint, department, school, district, employee, administrative, statute
@@ -83,6 +86,8 @@ Topic 5: Civil Cases (contracts and torts)
 
 The current 'Minimal Viable Product' has a few functions. It can take in keywords, a sentence, or sentences and use the Doc2Vec model to find similar documents. 
 It can also limit those similar cases to those which fall under the same LDA topic and then can also limit to those cases that occurred after a given date. 
+
+# NEXT...
 
 The next model (work in progress) will include the sub-topics found in the LDA modeling, as well as, the graph theory based on citations.
 
