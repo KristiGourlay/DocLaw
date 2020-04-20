@@ -2,6 +2,7 @@
 
 <img src='static/images/legalbooks.png' width='1200' height='500' alt='legalbooks'>
 
+
 # The Data 
 
 This repository explores legal cases made available by The Caselaw Access Project ('CAP'). CAP expands public access to legal cases in the United States; digitized from the Harvard Law Library collections. The collection includes all official book-published case law. For the purpose of this repository, I decided to focus on Illinois, to create a model that could then be used on other states. 
