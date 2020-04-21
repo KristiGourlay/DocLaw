@@ -20,7 +20,7 @@ class Datacleaner(TransformerMixin):
 
     def clean(self, raw_text):
 
-        clean_text = BeautifulSoup(raw_text).get_text()
+        clean_text = BeautifulSoup(raw_text, features='lxml').get_text()
         lower_cases = clean_text.lower()
         tokens = Datacleaner.tokenizer.tokenize(lower_cases)
         lemms = [Datacleaner.lemmatizer.lemmatize(word) for word in tokens]

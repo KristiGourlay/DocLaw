@@ -45,6 +45,8 @@ class Law_Docs():
     def show_results(self, predictions):
         result = []
         n = 0
+        data_save = pd.DataFrame(predictions)
+        data_save.to_csv('../data/data_save.csv')
         for item in predictions:
             n += 1
             result.append(f"Most Similar Case # {n}: Case: {data.case_citation_name[item]}")
@@ -104,8 +106,8 @@ class Law_Docs():
             return self.show_results(return_docs)
 
 
-#
-# user_query = Law_Docs(example)
+# example = data.iloc[0]['clean_text']
+# user_query = Law_Docs()
 # user_query.ldamodel()
 # user_query.d2v_preds()
 # user_query.super_version()
